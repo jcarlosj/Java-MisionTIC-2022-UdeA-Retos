@@ -11,10 +11,10 @@ public class Material {
     // Constructor
     public Material( int id, String title, String code, String author, int year ) {
         this .ID = id;
-        this.title = title;
-        this.code = code;
-        this.author = author;
-        this.year = year;
+        this .title = title;
+        this .code = code;
+        this .author = author;
+        this .year = year;
     }
 
     // Getters and setters
@@ -56,7 +56,7 @@ public class Material {
 
     @Override
     public String toString() {
-        return "Material [ ID: " + ID + ", author: " + author + ", code: " + code + ", title: " + title + ", year: " + year + " ]";
+        return "Material [ ID: " + this .ID + ", author: " + this .author + ", code: " + this .code + ", title: " + this .title + ", year: " + this .year + " ]";
     }
 
 }
