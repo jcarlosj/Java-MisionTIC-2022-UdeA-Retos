@@ -1,5 +1,6 @@
 package co.edu.udea.jcarlosj.proyecto.biblioteca;
 
+import java.rmi.MarshalException;
 import java.util.ArrayList;
 
 public class Library {
@@ -25,15 +26,28 @@ public class Library {
         int index = 0;
 
         for( Material material : this .books ) {
-            datatable[ index ][ 0 ] = material .getID();
-            datatable[ index ][ 1 ] = material .getTitle();
-            datatable[ index ][ 2 ] = material .getCode();
-            datatable[ index ][ 3 ] = material .getAuthor();
-            datatable[ index ][ 4 ] = material .getYear();
+
+            Object[] datarow = this .getDatatable( material );
+
+            for( int i = 0; i < datarow .length; i++ ) {
+                datatable[ index ][ i ] = datarow[ i ];
+            }
             index ++;
         }
 
         return datatable;
+    }
+
+    public Object[] getDatatable( Material material ) {
+        Object[] datarow = {
+            material .getID(),
+            material .getTitle(),
+            material .getCode(),
+            material .getAuthor(),
+            material .getYear()
+        };
+        
+        return datarow;
     }
 
     @Override
@@ -46,6 +60,8 @@ public class Library {
         library .add( "Software libre para una sociedad libre", "FREE", "Richard Stalmman", 2002 );
         library .add( "El patrón Bitcoin", "DERF", "Saifedean Ammous", 2018 );
         library .add( "Java para Niños", "JERN", "Nadia Ameziane Garcia", 2017 );
+
+        library .getList();
 
         Object[][] data = ( Object[][] ) library .getList();
         iterateForEach( data );
