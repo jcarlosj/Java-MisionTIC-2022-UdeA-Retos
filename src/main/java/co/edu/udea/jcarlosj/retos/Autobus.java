@@ -119,7 +119,7 @@ public class Autobus {
 
     // Metodos
     public void recogerPasajero( int estrato ) {
-        if( ! this .enMarcha && this .puertaAbierta ) {
+        if( ! this .enMarcha && this .puertaAbierta && ( this .nPasajeros < this .nMaximoPasajeros ) ) {
 
             if( estrato >= 0 && estrato < 3 ) {
                 this .cantidadDinero += 1500;
@@ -204,52 +204,60 @@ public class Autobus {
 
     @Override
     public String toString() {
-        return "Autobus [ aireAcondicionadoActivado: " + aireAcondicionadoActivado + ", cantidadDinero: " + cantidadDinero
-                + ", enMarcha: " + enMarcha + ", localizacionX: " + localizacionX + ", localizacionY: " + localizacionY
-                + ", motorEncendido: " + motorEncendido + ", nMaximoPasajeros: " + nMaximoPasajeros + ", nPasajeros: "
-                + nPasajeros + ", nombreConductor: " + nombreConductor + ", puertaAbierta: " + puertaAbierta
-                + ", wifiEncendido: " + wifiEncendido + " ]";
+        return "Autobus [ " +
+            "  \n   nombreConductor: " + nombreConductor +
+            ", \n   nPasajeros: " + nPasajeros +
+            ", \n   cantidadDinero: " + cantidadDinero +
+            ", \n   nMaximoPasajeros: " + nMaximoPasajeros +
+            ", \n   localizacionX: " + localizacionX +
+            ", \n   localizacionY: " + localizacionY +
+            ", \n   puertaAbierta: " + puertaAbierta +
+            ", \n   aireAcondicionadoActivado: " + aireAcondicionadoActivado +
+            ", \n   motorEncendido: " + motorEncendido +
+            ", \n   wifiEncendido: " + wifiEncendido +
+            ", \n   enMarcha: " + enMarcha +
+        " \n   ]";
     }
 
     public static void main( String[] args ) throws Exception {
         Autobus camion1 = new Autobus( "Pepe", 30, false );
-        System.out.println( camion1 );
+        System.out.println( "1. " + camion1 );
 
         camion1 .moverDerecha( 5 );
-        System.out.println( camion1 );
+        System.out.println( "2. " + camion1 );
 
         camion1 .gestionarWifi();
         camion1 .gestionarAireAcondicionado();
         camion1 .gestionarMarcha();
-        System.out.println( camion1 );
+        System.out.println( "3. " + camion1 );
 
         camion1 .gestionarMotor();
         camion1 .gestionarMarcha();
         camion1 .moverDerecha( 5 );
-        System.out.println( camion1 );
+        System.out.println( "4. " + camion1 );
 
         camion1 .recogerPasajero( 2 );
         camion1 .gestionarPuerta();
         camion1 .moverArriba( 10 );
-        System.out.println( camion1 );
+        System.out.println( "5. " + camion1 );
 
         camion1 .gestionarMarcha();
         camion1 .gestionarPuerta();
         camion1 .recogerPasajero( 1 );
         camion1 .recogerPasajero( 4 );
         camion1 .recogerPasajero( 6 );
-        System.out.println( camion1 );
+        System.out.println( "6. " + camion1 );
 
         camion1 .gestionarWifi();
         camion1 .gestionarAireAcondicionado();
         camion1 .gestionarMarcha();
         camion1 .moverIzquierda( 2 );
-        System.out.println( camion1 );
+        System.out.println( "7. " + camion1 );
 
         camion1 .dejarPasajero();
         camion1 .gestionarMotor();
         camion1 .calcularDistanciaAcopio();
-        System.out.println( camion1 );
+        System.out.println( "8. " + camion1 );
 
     }
 
