@@ -120,8 +120,8 @@ public class SimCard {
     }
 
     public void consumirDatos( int c ) {
-        // Verifica que el movil este encendido
-        if( ! this .celularApagado ) {
+        // Verifica que el movil este encendido, que el valor ingresado sea positivo y que alcance el saldo
+        if( ! this .celularApagado && c > 0 && this .saldoDatos > c ) {
             this .saldoDatos -= c;
         }
     }
@@ -146,7 +146,10 @@ public class SimCard {
     }
 
     public void recargarSaldo( double s ) {
-        this .saldo += s;
+        // Verifica que la recarga sea positiva
+        if( s > 0 ) {
+            this .saldo += s;
+        }
     }
 
     public void gestionarEncendidoCelular() {
@@ -173,11 +176,9 @@ public class SimCard {
 
     public void gestionarDatos() {
         // Verifica que el movil este encendido
-        //if( this .celularApagado ) {
+        if( this .celularApagado ) {
             this .datosActivados = ! this .datosActivados;
-        //}
-
-        // NOTA: En la vida real si el movil no esta encendido no podemos activar o desactivar los datos, he comentado la condicion que verifica que el movil este encendido para cumplir los requisitos del reto
+        }
     }
 
     @Override
@@ -197,10 +198,10 @@ public class SimCard {
     public static void main( String [] args ) throws Exception {
 
         // 1. Generar instancia
-        OperadorMovil cliente = new OperadorMovil( "3015328969" );
+        SimCard cliente = new SimCard( "3015328969" );
         System.out.println( "1. " + cliente );
 
-        // 2. Recarga $50000
+/*         // 2. Recarga $50000
         cliente .recargarSaldo( 50000 );
         System.out.println( "2. " + cliente );
 
@@ -233,8 +234,18 @@ public class SimCard {
 
         // 9. Apaga el movil
         cliente .gestionarEncendidoCelular();
-        System.out.println( "9. " + cliente );
+        System.out.println( "9. " + cliente ); */
 
+
+        cliente .llamar(50); 
+        cliente .llamar(120); 
+        cliente .gestionarEncendidoCelular(); 
+        cliente .gestionarModoAvion(); 
+        cliente .gestionarDatos(); 
+        cliente .recargarSaldo(100000); 
+        cliente .consumirDatos(3);
+
+        System.out.println( "VPL " + cliente );
     }
 
 }
