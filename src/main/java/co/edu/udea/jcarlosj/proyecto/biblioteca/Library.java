@@ -38,6 +38,22 @@ public class Library {
         return datatable;
     }
 
+    public Object[][] getById( int id ) {
+        Object[][] datatable = new Object[ 1 ][ 5 ];
+
+        for( Material material : this .books ) {
+            if( id == material.getID() ) {
+                Object[] datarow = this .getDatatable( material );
+
+                for( int i = 0; i < datarow .length; i++ ) {
+                    datatable[ 0 ][ i ] = datarow[ i ];
+                }
+            }
+        }
+
+        return datatable;
+    }
+
     public Object[] getDatatable( Material material ) {
         Object[] datarow = {
             material .getID(),
@@ -57,13 +73,16 @@ public class Library {
 
     public static void main( String[] args ) throws Exception {
         Library library = new Library();
+        Object[][] data;
+
         library .add( "Software libre para una sociedad libre", "FREE", "Richard Stalmman", 2002 );
         library .add( "El patrón Bitcoin", "DERF", "Saifedean Ammous", 2018 );
         library .add( "Java para Niños", "JERN", "Nadia Ameziane Garcia", 2017 );
 
-        library .getList();
+        // data = ( Object[][] ) library .getList();
+        // iterateForEach( data );
 
-        Object[][] data = ( Object[][] ) library .getList();
+        data = ( Object[][] ) library .getById( 1 );
         iterateForEach( data );
 
     }
