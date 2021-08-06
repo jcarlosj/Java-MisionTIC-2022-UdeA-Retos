@@ -65,6 +65,15 @@ public class Library {
         }
     }
 
+    public void delete( int id ) {
+        for( Material material : this .books ) {
+            if( id == material .getID() ) {
+               this .books.remove( material );
+               break;
+            }
+        }
+    }
+
     public Object[] getDatatable( Material material ) {
         Object[] datarow = {
             material .getID(),
@@ -97,6 +106,12 @@ public class Library {
         //iterateForEach( data );
 
         library .update( 2, "Introducción a la programación con Python", "IPDE", "Nilo Ney Coutinho Menezes", 2016 );
+        System .out .println( "" );
+
+        data = ( Object[][] ) library .getList();
+        iterateForEach( data );
+
+        library .delete( 1 );
         System .out .println( "" );
 
         data = ( Object[][] ) library .getList();
