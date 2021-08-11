@@ -1,4 +1,4 @@
-package co.edu.udea.jcarlosj.retos;
+package co.edu.udea.jcarlosj.reto_1;
 
 public class Bus {
     // Atributos
