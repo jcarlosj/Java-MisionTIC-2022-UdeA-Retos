@@ -1,7 +1,5 @@
 package co.edu.udea.jcarlosj.reto_2;
 
-import java.time.Year;
-
 public class Jugador extends Personaje {
     // Atributos
     private int numeroBotiquines;
@@ -14,7 +12,10 @@ public class Jugador extends Personaje {
     public void usarBotiquin() {
         if( this .numeroBotiquines > 0 ) {
             this .numeroBotiquines --;
-            this .vida += 5;
+
+            double newLifeValue = this .vida + 5;
+            this .vida = ( newLifeValue > 100 ) ? 100 : newLifeValue;
+
         }
     }
 
@@ -58,7 +59,7 @@ public class Jugador extends Personaje {
     public String toString() {
         return "Jugador [ " +
             super .toString() +
-            ", \n   numeroBotiquines: " + numeroBotiquines +
+            ", \n   numeroBotiquines: " + this .numeroBotiquines +
         "\n ]";
     }
 

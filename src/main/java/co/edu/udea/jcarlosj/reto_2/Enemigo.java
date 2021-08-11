@@ -31,7 +31,7 @@ public class Enemigo extends Personaje {
     // Metodos
     public void evolucionar() {
         if( this .vida < 11 && this .evolucionesAplicadas == 1 ) {
-            this .evolucionesAplicadas += 1;
+            this .evolucionesAplicadas ++;
             this .resistencia ++;
         }
         else if( this .vida < 31 && this .evolucionesAplicadas == 0 ) {
