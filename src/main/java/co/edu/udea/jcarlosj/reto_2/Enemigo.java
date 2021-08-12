@@ -12,6 +12,23 @@ public class Enemigo extends Personaje {
         this .resistencia = 1;
     }
 
+    // Getters and setters
+    public int getEvolucionesAplicadas() {
+        return this .evolucionesAplicadas;
+    }
+
+    public void setEvolucionesAplicadas(int evolucionesAplicadas) {
+        this .evolucionesAplicadas = evolucionesAplicadas;
+    }
+
+    public int getResistencia() {
+        return this .resistencia;
+    }
+
+    public void setResistencia(int resistencia) {
+        this .resistencia = resistencia;
+    }
+
     // Metodos
     public void evolucionar() {
 
@@ -36,7 +53,7 @@ public class Enemigo extends Personaje {
 
     @Override
     public String toString() {
-        return "Enemigo [ " +
+        return this ."Enemigo [ " +
             super .toString() +
             ", \n   evolucionesAplicadas: " + this .evolucionesAplicadas + ", resistencia: " + this .resistencia +
         "\n ]";

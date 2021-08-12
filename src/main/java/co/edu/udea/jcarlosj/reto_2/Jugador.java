@@ -10,6 +10,15 @@ public class Jugador extends Personaje {
         super( name, gender, x, y, damage );
     }
 
+    // Getters and setters
+    public int getNumeroBotiquines() {
+        return this .numeroBotiquines;
+    }
+
+    public void setNumeroBotiquines( int numeroBotiquines ) {
+        this .numeroBotiquines = numeroBotiquines;
+    }
+
     // Metodos
     public void moverDerecha( double d ) {
         this .posicionX += d;
