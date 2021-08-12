@@ -30,22 +30,25 @@ public class Enemigo extends Personaje {
 
     // Metodos
     public void evolucionar() {
-        if( this .vida < 11 && this .evolucionesAplicadas == 1 ) {
-            this .evolucionesAplicadas ++;
-            this .resistencia ++;
-        }
-        else if( this .vida < 31 && this .evolucionesAplicadas == 0 ) {
-            this .evolucionesAplicadas += 1;
-            this .damage += 20;
+
+        if( this .vida > 0 ) { 
+            if( this .vida < 11 && this .evolucionesAplicadas == 1 ) {
+                this .evolucionesAplicadas ++;
+                this .resistencia ++;
+            }
+            else if( this .vida < 31 && this .evolucionesAplicadas == 0 ) {
+                this .evolucionesAplicadas ++;
+                this .damage += 20;
+            }
+
+            System.out.println( "  > Evoluciona: [ nombre: " + this .nombre + ", vida: " + this .vida + ", evolucionesAplicadas: " + this .evolucionesAplicadas + " ] " );
         }
 
     }
 
     @Override
     public void recibirImpacto( double d ) {
-        if ( d > this .vida )  {
-            this .vida -= d / this .resistencia;
-        }
+        super .recibirImpacto( d / this .resistencia );
     }
 
     @Override

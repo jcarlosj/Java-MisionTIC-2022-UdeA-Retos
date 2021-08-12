@@ -8,27 +8,32 @@ public class Jugador extends Personaje {
         super( name, gender, x, y, damage );
     }
 
-    // Metodos
-    public void usarBotiquin() {
-        if( this .numeroBotiquines > 0 ) {
-            this .numeroBotiquines --;
-
-            double newLifeValue = this .vida + 5;
-            this .vida = ( newLifeValue > 100 ) ? 100 : newLifeValue;
-
-        }
-    }
-
-    public void recogerBotiquin() {
-        this .numeroBotiquines ++;
-    }
-
+    // Getters and setters
     public int getNumeroBotiquines() {
         return this .numeroBotiquines;
     }
 
     public void setNumeroBotiquines(int numeroBotiquines) {
         this .numeroBotiquines = numeroBotiquines;
+    }
+
+    // Metodos
+    public void usarBotiquin() {
+        int incrementa = 5;
+
+        if( this .numeroBotiquines > 0 ) {
+            this .numeroBotiquines --;
+
+            double newLifeValue = this .vida + incrementa;
+            this .vida = ( newLifeValue > 100 ) ? 100 : newLifeValue;
+
+            System .out .println( " Usa botiquin: [ nombre: " + this .nombre + ", incrementa: " + incrementa + ", vida: " + this .vida + " ] " );
+        }
+
+    }
+
+    public void recogerBotiquin() {
+        this .numeroBotiquines ++;
     }
 
     public void moverDerecha( double d ) {
@@ -48,11 +53,14 @@ public class Jugador extends Personaje {
     }
 
     @Override
-    public void golpear( Personaje personaje ) {
-        super . golpear( personaje );
+    public void golpear( Personaje p ) {
+        super .golpear( p );
 
-        Enemigo enemigo = ( Enemigo ) personaje;
-        enemigo .evolucionar();
+        if( p instanceof Enemigo ) {
+            Enemigo enemigo = ( Enemigo ) p;
+            enemigo .evolucionar();
+        }
+
     }
 
     @Override

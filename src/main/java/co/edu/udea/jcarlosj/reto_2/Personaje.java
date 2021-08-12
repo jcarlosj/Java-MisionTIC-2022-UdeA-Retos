@@ -13,10 +13,11 @@ public class Personaje {
     public Personaje( String nombre, char sexo, double x, double y, double damage ) {
         this .nombre = nombre;
         this .sexo = sexo;
-        this .vida = 100;
         this .posicionX = x;
         this .posicionY = y;
         this .damage = damage;
+
+        this .vida = 100;
     }
 
     // Getters and setters
@@ -41,7 +42,7 @@ public class Personaje {
     }
 
     public void setVida(double vida) {
-        this .vida = ( vida >= 0 && vida <= 100 ) ? vida : this .vida;
+        this .vida = vida;
     }
 
     public double getPosicionX() {
@@ -69,24 +70,34 @@ public class Personaje {
     }
 
     // Metodos
-    public void golpear( Personaje personaje ) {
-        double castigo = this .damage / this .calcularDistanciaRespectoPersonaje( personaje );
+    public void golpear( Personaje p ) {
+        double castigo = this .damage / this .calcularDistanciaRespectoPersonaje( p );
 
-        if( castigo <= personaje .vida ) {
-            personaje .vida -= castigo;
+        if( p .vida > 0 ) {
+            if( p .vida >= castigo ) {
+                p .vida -= castigo;
+            }
+            else {
+                p .vida = 0;
+            }
+    
+            System.out.println( " Golpean a: [ nombre: " + p .nombre + ", castigo: " + castigo + ", vida: " + p .vida + " ] " );
         }
+
     }
 
     public void recibirImpacto( double d ) {
-        this .vida = ( d > this .vida ) ? 0 : this .vida - d;
+        System .out .println( " d: " + d + ", vida: " + this.vida );
+        //this .vida = ( d > this .vida ) ? 0 : this .vida - d;
+        this .vida -= d;
     }
 
 
-    public double calcularDistanciaRespectoPersonaje( Personaje personaje ) {
+    public double calcularDistanciaRespectoPersonaje( Personaje p ) {
         return Math .abs(
             Math .sqrt(
-                Math .pow( this .posicionX - personaje .posicionX, 2 ) +
-                Math .pow( this .posicionY - personaje .posicionY, 2 )
+                Math .pow( this .posicionX - p .posicionX, 2 ) +
+                Math .pow( this .posicionY - p .posicionY, 2 )
             )
         );
     }
