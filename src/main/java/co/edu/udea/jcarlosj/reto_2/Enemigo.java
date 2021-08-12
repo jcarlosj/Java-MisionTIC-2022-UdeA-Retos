@@ -31,13 +31,19 @@ public class Enemigo extends Personaje {
     // Metodos
     public void evolucionar() {
 
-        if( this .vida > 0 ) { 
+        if( this .vida > 0 ) {
             if( this .vida < 11 && this .evolucionesAplicadas == 1 ) {
-                this .evolucionesAplicadas ++;
+                this .evolucionesAplicadas += 1;
                 this .resistencia ++;
+
+                // TODO: Disminuir la cantidad de daño recibido a la mitad
+                double mitadCastigo = this .castigo / 2;
+                this .vida += mitadCastigo;                 // Compensa la cantidad de daño recibido a la mitad
+                System.out.println( "  > Inflingir la mitad del daño [ castigo: " + mitadCastigo + ", vida: " + this .vida + " ]" );
+
             }
             else if( this .vida < 31 && this .evolucionesAplicadas == 0 ) {
-                this .evolucionesAplicadas ++;
+                this .evolucionesAplicadas += 1;
                 this .damage += 20;
             }
 

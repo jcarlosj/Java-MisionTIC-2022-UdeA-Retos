@@ -9,6 +9,8 @@ public class Personaje {
     protected double damage;
     protected double vida;
 
+    protected double castigo;
+
     // Cosntructor
     public Personaje( String nombre, char sexo, double x, double y, double damage ) {
         this .nombre = nombre;
@@ -71,17 +73,17 @@ public class Personaje {
 
     // Metodos
     public void golpear( Personaje p ) {
-        double castigo = this .damage / this .calcularDistanciaRespectoPersonaje( p );
+        this .castigo = this .damage / this .calcularDistanciaRespectoPersonaje( p );
 
         if( p .vida > 0 ) {
-            if( p .vida >= castigo ) {
-                p .vida -= castigo;
+            if( p .vida >= this .castigo ) {
+                p .vida -= this .castigo;
             }
             else {
                 p .vida = 0;
             }
     
-            System.out.println( " Golpean a: [ nombre: " + p .nombre + ", castigo: " + castigo + ", vida: " + p .vida + " ] " );
+            System.out.println( " Golpean a: [ nombre: " + p .nombre + ", castigo: " + this .castigo + ", vida: " + p .vida + " ] " );
         }
 
     }
