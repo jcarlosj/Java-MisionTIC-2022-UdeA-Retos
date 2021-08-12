@@ -2,16 +2,14 @@ package co.edu.udea.jcarlosj.reto_2;
 
 public class Personaje {
     // Atributos
-    protected String nombre;
-    protected char sexo;
+    private String nombre;
+    private char sexo;
     protected double posicionX;
     protected double posicionY;
-    protected double damage;
-    protected double vida;
+    private double damage;
+    private double vida;
 
-    protected double castigo;
-
-    // Cosntructor
+    // Constructor
     public Personaje( String nombre, char sexo, double x, double y, double damage ) {
         this .nombre = nombre;
         this .sexo = sexo;
@@ -27,7 +25,7 @@ public class Personaje {
         return this .nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre( String nombre ) {
         this .nombre = nombre;
     }
 
@@ -35,23 +33,15 @@ public class Personaje {
         return this .sexo;
     }
 
-    public void setSexo(char sexo) {
+    public void setSexo( char sexo ) {
         this .sexo = sexo;
-    }
-
-    public double getVida() {
-        return this .vida;
-    }
-
-    public void setVida(double vida) {
-        this .vida = vida;
     }
 
     public double getPosicionX() {
         return this .posicionX;
     }
 
-    public void setPosicionX(double posicionX) {
+    public void setPosicionX( double posicionX ) {
         this .posicionX = posicionX;
     }
 
@@ -59,7 +49,7 @@ public class Personaje {
         return this .posicionY;
     }
 
-    public void setPosicionY(double posicionY) {
+    public void setPosicionY( double posicionY ) {
         this .posicionY = posicionY;
     }
 
@@ -67,42 +57,27 @@ public class Personaje {
         return this .damage;
     }
 
-    public void setDamage(double damage) {
-        this.damage = damage;
+    public void setDamage( double damage ) {
+        this .damage = damage;
+    }
+
+    public double getVida() {
+        return this .vida;
+    }
+
+    public void setVida( double vida ) {
+        this .vida = vida;
     }
 
     // Metodos
-    public void golpear( Personaje p ) {
-        this .castigo = this .damage / this .calcularDistanciaRespectoPersonaje( p );
+    // TODO: Definir funcionalidad del metodo golpear
+    public void golpear() {}
 
-        if( p .vida > 0 ) {
-            if( p .vida >= this .castigo ) {
-                p .vida -= this .castigo;
-            }
-            else {
-                p .vida = 0;
-            }
-    
-            System.out.println( " Golpean a: [ nombre: " + p .nombre + ", castigo: " + this .castigo + ", vida: " + p .vida + " ] " );
-        }
+    // TODO: Definir funcionalidad del metodo recibirImpacto
+    public void recibirImpacto() {}
 
-    }
-
-    public void recibirImpacto( double d ) {
-        System .out .println( " d: " + d + ", vida: " + this.vida );
-        //this .vida = ( d > this .vida ) ? 0 : this .vida - d;
-        this .vida -= d;
-    }
-
-
-    public double calcularDistanciaRespectoPersonaje( Personaje p ) {
-        return Math .abs(
-            Math .sqrt(
-                Math .pow( this .posicionX - p .posicionX, 2 ) +
-                Math .pow( this .posicionY - p .posicionY, 2 )
-            )
-        );
-    }
+    // TODO: Definir funcionalidad del metodo calcularDistanciaRespectoPersonaje
+    public void calcularDistanciaRespectoPersonaje() {}
 
     @Override
     public String toString() {

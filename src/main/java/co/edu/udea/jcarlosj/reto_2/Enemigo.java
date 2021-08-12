@@ -5,57 +5,20 @@ public class Enemigo extends Personaje {
     private int evolucionesAplicadas;
     private int resistencia;
 
+    // Constructor
     public Enemigo( String name, char gender, double x, double y, double damage ) {
         super( name, gender, x, y, damage );
 
         this .resistencia = 1;
     }
 
-    // Getters and setters
-    public int getEvolucionesAplicadas() {
-        return this .evolucionesAplicadas;
-    }
-
-    public void setEvolucionesAplicadas( int evolucionesAplicadas ) {
-        this.evolucionesAplicadas = evolucionesAplicadas;
-    }
-
-    public int getResistencia() {
-        return this .resistencia;
-    }
-
-    public void setResistencia( int resistencia ) {
-        this .resistencia = resistencia;
-    }
-
     // Metodos
-    public void evolucionar() {
+    // TODO: Definir funcionalidad del metodo evolucionar
+    public void evolucionar() {}
 
-        if( this .vida > 0 ) {
-            if( this .vida < 11 && this .evolucionesAplicadas == 1 ) {
-                this .evolucionesAplicadas += 1;
-                this .resistencia ++;
-
-                // TODO: Disminuir la cantidad de daño recibido a la mitad
-                double mitadCastigo = this .castigo / 2;
-                this .vida += mitadCastigo;                 // Compensa la cantidad de daño recibido a la mitad
-                System.out.println( "  > Inflingir la mitad del daño [ castigo: " + mitadCastigo + ", vida: " + this .vida + " ]" );
-
-            }
-            else if( this .vida < 31 && this .evolucionesAplicadas == 0 ) {
-                this .evolucionesAplicadas += 1;
-                this .damage += 20;
-            }
-
-            System.out.println( "  > Evoluciona: [ nombre: " + this .nombre + ", vida: " + this .vida + ", evolucionesAplicadas: " + this .evolucionesAplicadas + " ] " );
-        }
-
-    }
-
+    // TODO: Definir funcionalidad del metodo
     @Override
-    public void recibirImpacto( double d ) {
-        super .recibirImpacto( d / this .resistencia );
-    }
+    public void recibirImpacto() {}
 
     @Override
     public String toString() {
