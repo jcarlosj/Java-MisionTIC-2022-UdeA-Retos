@@ -2,7 +2,7 @@ package co.edu.udea.jcarlosj.reto_2;
 
 public class Personaje {
     // Atributos
-    private String nombre;
+    protected String nombre;
     private char sexo;
     protected double posicionX;
     protected double posicionY;
@@ -75,21 +75,22 @@ public class Personaje {
     }
 
     // Metodos
-    // TODO: Definir funcionalidad del metodo golpear
     public void golpear( Personaje p ) {    // p: Personaje que recibe el daño
         double castigo = ( this .moreResistencia ) ? this .damage / 2 : this .damage;
-        p .recibirImpacto( castigo / this .calcularDistanciaRespectoPersonaje( p ) );
+        double fuerzaImpacto = castigo / this .calcularDistanciaRespectoPersonaje( p );
+        p .recibirImpacto( fuerzaImpacto );
+
+        System.out.println( " Golpean a " + p .nombre + ": [ damage: " + castigo + ", fuerza: " + fuerzaImpacto + ", vida: " + p .vida + " ] " );
     }
 
-    // TODO: Definir funcionalidad del metodo recibirImpacto
     public void recibirImpacto( double d ) {
         // Verifica que haya puntos de vida disponibles para restar vida
-        ( this .havePuntosVida( d ) )
-            ?   this .setVida( getVida() - d )
-            :   this .setVida( 0 );
+        if ( this .havePuntosVida( d ) )
+            this .setVida( getVida() - d );
+        else
+            this .setVida( 0 );
     }
 
-    // TODO: Definir funcionalidad del metodo calcularDistanciaRespectoPersonaje
     public double calcularDistanciaRespectoPersonaje( Personaje p ) {
         return Math .abs(
             Math .sqrt(
@@ -107,23 +108,21 @@ public class Personaje {
     // Suma puntos de vida
     protected void sumarPuntosVida( int puntos ) {
         double totalPuntos = this .getVida() + puntos;
-
+        System.out.println( "TotalPuntos: " + totalPuntos );
         // Valida que el total de la suma de los puntos no sobre pase el maximo permitido por vida
-        ( totalPuntos > this .getVida() )
-            ?   this .setVida( 100 )
-            :   this .setVida( totalPuntos );
+        if( totalPuntos > 100 )
+            this .setVida( 100 );
+        else
+            this .setVida( totalPuntos );
 
     }
 
     @Override
     public String toString() {
         return
-            "\n   nombre: " + this .nombre +
-            ", \n   sexo: " + this .sexo +
-            ", \n   posicionX: " + this .posicionX +
-            ", \n   posicionY: " + this .posicionY +
-            ", \n   damage: " + this .damage +
-            ", \n   vida: " + this .vida;
+            "\n   nombre: " + this .nombre + ", sexo: " + this .sexo +
+            ", \n   posicionX: " + this .posicionX + ", posicionY: " + this .posicionY +
+            ", \n   damage: " + this .damage + ", vida: " + this .vida;
     }
 
 }

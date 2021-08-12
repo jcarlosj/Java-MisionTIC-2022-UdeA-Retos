@@ -3,6 +3,7 @@ package co.edu.udea.jcarlosj.reto_2;
 public class Jugador extends Personaje {
     // Atributos
     private int numeroBotiquines;
+    private int incrementaSalud = 5;
 
     // Constructor
     public Jugador( String name, char gender, double x, double y, double damage ) {
@@ -28,20 +29,22 @@ public class Jugador extends Personaje {
 
     public void recogerBotiquin() {
         this .numeroBotiquines ++;
+        System .out .println( this .nombre + " recoge botiquin: [ # botiquines: " + this .numeroBotiquines + " ] " );
     }
 
     public void usarBotiquin() {
         if( this .numeroBotiquines > 0 ) {
             this .numeroBotiquines --;
 
-            this .sumarPuntosVida( 5 );
+            this .sumarPuntosVida( this .incrementaSalud );
+
+            System .out .println( this .nombre + " usa botiquin: [ incrementa: " + this .incrementaSalud + ", vida: " + this .getVida() + " ] " );
         }
     }
 
-    // TODO: Definir funcionalidad del metodo golpear
     public void golpear( Enemigo p ) {
+        super .golpear( p );
         p .evolucionar();
-        this .super .golpear( p );
     }
     
     @Override
