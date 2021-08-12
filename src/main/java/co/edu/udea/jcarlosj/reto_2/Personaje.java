@@ -8,6 +8,7 @@ public class Personaje {
     protected double posicionY;
     private double damage;
     private double vida;
+    protected boolean moreResistencia;
 
     // Constructor
     public Personaje( String nombre, char sexo, double x, double y, double damage ) {
@@ -18,6 +19,7 @@ public class Personaje {
         this .damage = damage;
 
         this .vida = 100;
+        this .moreResistencia = false;
     }
 
     // Getters and setters
@@ -66,18 +68,52 @@ public class Personaje {
     }
 
     public void setVida( double vida ) {
-        this .vida = vida;
+        // Verifica que el valor ingresado sea del rango que maximo y minimo que puede tener un personaje
+        if ( vida > -1 && vida < 101 ) {
+            this .vida = vida;
+        }
     }
 
     // Metodos
     // TODO: Definir funcionalidad del metodo golpear
-    public void golpear() {}
+    public void golpear( Personaje p ) {    // p: Personaje que recibe el daño
+        double castigo = ( this .moreResistencia ) ? this .damage / 2 : this .damage;
+        p .recibirImpacto( castigo / this .calcularDistanciaRespectoPersonaje( p ) );
+    }
 
     // TODO: Definir funcionalidad del metodo recibirImpacto
-    public void recibirImpacto() {}
+    public void recibirImpacto( double d ) {
+        // Verifica que haya puntos de vida disponibles para restar vida
+        ( this .havePuntosVida( d ) )
+            ?   this .setVida( getVida() - d )
+            :   this .setVida( 0 );
+    }
 
     // TODO: Definir funcionalidad del metodo calcularDistanciaRespectoPersonaje
-    public void calcularDistanciaRespectoPersonaje() {}
+    public double calcularDistanciaRespectoPersonaje( Personaje p ) {
+        return Math .abs(
+            Math .sqrt(
+                Math .pow( this .posicionX - p .posicionX, 2 ) +
+                Math .pow( this .posicionY - p .posicionY, 2 )
+            )
+        );
+    }
+
+    // Verifica si hay puntos de vida para restar
+    protected boolean havePuntosVida( double d ) {
+        return this .getVida() >= d;
+    }
+
+    // Suma puntos de vida
+    protected void sumarPuntosVida( int puntos ) {
+        double totalPuntos = this .getVida() + puntos;
+
+        // Valida que el total de la suma de los puntos no sobre pase el maximo permitido por vida
+        ( totalPuntos > this .getVida() )
+            ?   this .setVida( 100 )
+            :   this .setVida( totalPuntos );
+
+    }
 
     @Override
     public String toString() {

@@ -14,11 +14,25 @@ public class Enemigo extends Personaje {
 
     // Metodos
     // TODO: Definir funcionalidad del metodo evolucionar
-    public void evolucionar() {}
+    public void evolucionar() {
+        if( this .getVida() <= 30 && this .evolucionesAplicadas == 0 ) {
+            this .setDamage( this .getDamage() + 20 );
+            this .evolucionesAplicadas += 1;
+        }
+
+        if( this .getVida() <= 10 && this .evolucionesAplicadas == 1 ) {
+            this .resistencia += 1;
+            this .evolucionesAplicadas += 1;
+            this .moreResistencia = true;
+            
+        }
+    }
 
     // TODO: Definir funcionalidad del metodo
     @Override
-    public void recibirImpacto() {}
+    public void recibirImpacto( double d ) {
+        this .super .recibirImpacto( d / this .resistencia );
+    }
 
     @Override
     public String toString() {

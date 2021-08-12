@@ -33,12 +33,16 @@ public class Jugador extends Personaje {
     public void usarBotiquin() {
         if( this .numeroBotiquines > 0 ) {
             this .numeroBotiquines --;
-            this .setVida( this .getVida() + 5 );
+
+            this .sumarPuntosVida( 5 );
         }
     }
 
     // TODO: Definir funcionalidad del metodo golpear
-    public void golpear() {}
+    public void golpear( Enemigo p ) {
+        p .evolucionar();
+        this .super .golpear( p );
+    }
     
     @Override
     public String toString() {
