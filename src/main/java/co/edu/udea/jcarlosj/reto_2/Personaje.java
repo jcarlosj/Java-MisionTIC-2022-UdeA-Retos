@@ -18,7 +18,6 @@ public class Personaje {
         this .damage = damage;
 
         this .vida = 100;
-        this .moreResistencia = false;
     }
 
     // Getters and setters
