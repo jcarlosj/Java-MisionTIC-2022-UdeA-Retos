@@ -8,7 +8,6 @@ public class Personaje {
     protected double posicionY;
     private double damage;
     private double vida;
-    protected boolean moreResistencia;
 
     // Constructor
     public Personaje( String nombre, char sexo, double x, double y, double damage ) {
@@ -76,11 +75,10 @@ public class Personaje {
 
     // Metodos
     public void golpear( Personaje p ) {    // p: Personaje que recibe el daño
-        double castigo = ( this .moreResistencia ) ? this .damage / 2 : this .damage;
-        double fuerzaImpacto = castigo / this .calcularDistanciaRespectoPersonaje( p );
+        double fuerzaImpacto = this .damage / this .calcularDistanciaRespectoPersonaje( p );
         p .recibirImpacto( fuerzaImpacto );
 
-        System.out.println( " Golpean a " + p .nombre + ": [ damage: " + castigo + ", fuerza: " + fuerzaImpacto + ", vida: " + p .vida + " ] " );
+        System.out.println( " Golpean a " + p .nombre + ": [ damage: " + this .damage + ", fuerza: " + fuerzaImpacto + ", vida: " + p .vida + " ] " );
     }
 
     public void recibirImpacto( double d ) {

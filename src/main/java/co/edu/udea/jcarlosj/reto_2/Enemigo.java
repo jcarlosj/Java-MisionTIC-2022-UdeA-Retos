@@ -41,7 +41,6 @@ public class Enemigo extends Personaje {
         if( this .getVida() <= 10 && this .evolucionesAplicadas == 1 ) {
             this .resistencia += 1;
             this .evolucionesAplicadas += 1;
-            this .moreResistencia = true;
             System.out.println( "(< 10) Evoluciona: " + this .nombre + ": [ vida: " + this .getVida() + ", evolucionesAplicadas: " + this .evolucionesAplicadas + " ]" );
         }
     }
