@@ -45,7 +45,7 @@ public class Jugador extends Personaje {
         if( this .numeroBotiquines > 0 ) {
             this .numeroBotiquines --;
 
-            this .sumarPuntosVida( this .incrementaSalud );
+            this .agregarPuntosVida( this .incrementaSalud );
 
             System .out .println( this .nombre + " usa botiquin: [ incrementa: " + this .incrementaSalud + ", vida: " + this .getVida() + " ] " );
         }
@@ -63,4 +63,5 @@ public class Jugador extends Personaje {
             ", \n   numeroBotiquines: " + this .numeroBotiquines +
         "\n ]";
     }
+    
 }

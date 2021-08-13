@@ -69,9 +69,9 @@ public class Personaje {
 
     public void setVida( double vida ) {
         // Verifica que el valor ingresado sea del rango que maximo y minimo que puede tener un personaje
-        if ( vida > -1 && vida < 101 ) {
-            this .vida = vida;
-        }
+        this .vida = ( vida > -1 && vida < 101 )
+            ?   vida
+            :   100;
     }
 
     // Metodos
@@ -86,7 +86,7 @@ public class Personaje {
     public void recibirImpacto( double d ) {
         // Verifica que haya puntos de vida disponibles para restar vida
         if ( this .havePuntosVida( d ) )
-            this .setVida( getVida() - d );
+            this .setVida( this .getVida() - d );
         else
             this .setVida( 0 );
     }
@@ -102,19 +102,12 @@ public class Personaje {
 
     // Verifica si hay puntos de vida para restar
     protected boolean havePuntosVida( double d ) {
-        return this .getVida() >= d;
+        return d <= this .getVida();
     }
 
     // Suma puntos de vida
-    protected void sumarPuntosVida( int puntos ) {
-        double totalPuntos = this .getVida() + puntos;
-        System.out.println( "TotalPuntos: " + totalPuntos );
-        // Valida que el total de la suma de los puntos no sobre pase el maximo permitido por vida
-        if( totalPuntos > 100 )
-            this .setVida( 100 );
-        else
-            this .setVida( totalPuntos );
-
+    protected void agregarPuntosVida( int d ) {
+        this .setVida( this .getVida() + d );
     }
 
     @Override

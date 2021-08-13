@@ -53,7 +53,7 @@ public class Enemigo extends Personaje {
 
     @Override
     public String toString() {
-        return this ."Enemigo [ " +
+        return "Enemigo [ " +
             super .toString() +
             ", \n   evolucionesAplicadas: " + this .evolucionesAplicadas + ", resistencia: " + this .resistencia +
         "\n ]";
