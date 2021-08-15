@@ -9,15 +9,111 @@ public abstract class Vehiculo {
     protected double localizacionX;
     protected double localizacionY;
     protected boolean puertaAbierta;
-    private boolean aireAcondicionadoActivado;
-    protected boolean motorEncendido;
-    private boolean wifiEncendido;
-    protected boolean enMarcha;
+    private boolean aireAcondicionadoActivado = false;
+    protected boolean motorEncendido = false;
+    private boolean wifiEncendido = false;
+    protected boolean enMarcha = false;
+
+    // Getters and setters
+    public String getNombreConductor() {
+        return this .nombreConductor;
+    }
+
+    public void setNombreConductor(String nombreConductor) {
+        this .nombreConductor = nombreConductor;
+    }
+
+    public int getnPasajeros() {
+        return this .nPasajeros;
+    }
+
+    public void setnPasajeros(int nPasajeros) {
+        // Verifica si hay puestos disponibles
+        if( this .havePuestos() ) {
+            this .nPasajeros = nPasajeros;
+        }
+    }
+
+    public double getCantidadDinero() {
+        return this .cantidadDinero;
+    }
+
+    public void setCantidadDinero(double cantidadDinero) {
+        this .cantidadDinero = cantidadDinero;
+    }
+
+    public int getnMaximoPasajeros() {
+        return this .nMaximoPasajeros;
+    }
+
+    public void setnMaximoPasajeros(int nMaximoPasajeros) {
+        this .nMaximoPasajeros = nMaximoPasajeros;
+    }
+
+    public double getLocalizacionX() {
+        return localizacionX;
+    }
+
+    public void setLocalizacionX(double localizacionX) {
+        this .localizacionX = localizacionX;
+    }
+
+    public double getLocalizacionY() {
+        return this .localizacionY;
+    }
+
+    public void setLocalizacionY(double localizacionY) {
+        this .localizacionY = localizacionY;
+    }
+
+    public boolean isPuertaAbierta() {
+        return this .puertaAbierta;
+    }
+
+    public void setPuertaAbierta(boolean puertaAbierta) {
+        this .puertaAbierta = puertaAbierta;
+    }
+
+    public boolean isAireAcondicionadoActivado() {
+        return this .aireAcondicionadoActivado;
+    }
+
+    public void setAireAcondicionadoActivado(boolean aireAcondicionadoActivado) {
+        this .aireAcondicionadoActivado = aireAcondicionadoActivado;
+    }
+
+    public boolean isMotorEncendido() {
+        return this .motorEncendido;
+    }
+
+    public void setMotorEncendido(boolean motorEncendido) {
+        this .motorEncendido = motorEncendido;
+    }
+
+    public boolean isWifiEncendido() {
+        return this .wifiEncendido;
+    }
+
+    public void setWifiEncendido(boolean wifiEncendido) {
+        this .wifiEncendido = wifiEncendido;
+    }
+
+    public boolean isEnMarcha() {
+        return this .enMarcha;
+    }
+
+    public void setEnMarcha(boolean enMarcha) {
+        this .enMarcha = enMarcha;
+    }
 
     // Abstract Methods
     public abstract void gestionarMarcha();
 
     // Methods
+    protected boolean havePuestos() {
+        return this .nPasajeros <= this .nMaximoPasajeros;   // Verifica si el numero de pasajeros es menor al numero maximo de pasajeros
+    }
+
     public void dejarPasajero() {
         if( ! this .enMarcha && this .puertaAbierta ) {
             this .nPasajeros --;
@@ -82,17 +178,17 @@ public abstract class Vehiculo {
     @Override
     public String toString() {
         return
-            "\n   aireAcondicionadoActivado: " + this .aireAcondicionadoActivado +
+            "\n   nombreConductor: " + this .nombreConductor +
+            ", \n   nPasajeros: " + this .nPasajeros +
             ", \n   cantidadDinero: " + this .cantidadDinero +
-            ", \n   enMarcha: " + this .enMarcha +
+            ", \n   nMaximoPasajeros: " + this .nMaximoPasajeros +
             ", \n   localizacionX: " + this .localizacionX +
             ", \n   localizacionY: " + this .localizacionY +
-            ", \n   motorEncendido: " + this .motorEncendido +
-            ", \n   nMaximoPasajeros: " + this .nMaximoPasajeros +
-            ", \n   nPasajeros: " + this .nPasajeros +
-            ", \n   nombreConductor: " + this .nombreConductor +
             ", \n   puertaAbierta: " + this .puertaAbierta +
-            ", \n   wifiEncendido: " + this .wifiEncendido;
+            ", \n   aireAcondicionadoActivado: " + this .aireAcondicionadoActivado +
+            ", \n   motorEncendido: " + this .motorEncendido +
+            ", \n   wifiEncendido: " + this .wifiEncendido +
+            ", \n   enMarcha: " + this .enMarcha;
     }
 
     

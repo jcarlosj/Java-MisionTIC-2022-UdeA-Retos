@@ -6,23 +6,28 @@ public class Autobus extends Vehiculo {
     public Autobus( String nombre, int nMaximoPasajeros ) {
         this .nombreConductor = nombre;
         this .nMaximoPasajeros = nMaximoPasajeros;
+
+        this .puertaAbierta = false;
     }
 
-    // Metodos
+    // Static Methods
+    public static int calcularPasaje( int estrato )  {
+        int valor = 0;
+
+        if( estrato >= 0 && estrato < 3 ) valor = 1500;
+        else if( estrato < 5 ) valor = 2600;
+        else if( estrato < 7 ) valor = 3000;
+
+        return valor;
+    }
+
+    // Methods
     public void recogerPasajero( int estrato ) {
-        if( ! this .enMarcha && this .puertaAbierta && ( this .nPasajeros < this .nMaximoPasajeros ) ) {
+        if( ! this .enMarcha && this .puertaAbierta && this .havePuestos() ) {
 
-            if( estrato >= 0 && estrato < 3 ) {
-                this .cantidadDinero += 1500;
-            }
-            else if( estrato < 5 ) {
-                this .cantidadDinero += 2600;
-            }
-            else if( estrato < 7 ) {
-                this .cantidadDinero += 3000;
-            }
-
+            this .cantidadDinero += Autobus .calcularPasaje( estrato );
             this .nPasajeros ++;
+
         }
     }
 
@@ -31,8 +36,6 @@ public class Autobus extends Vehiculo {
             this .enMarcha = ! this .enMarcha;
         }
     }
-
-    public void calcularPasaje( /** int */ )  {}
 
     @Override
     public String toString() {

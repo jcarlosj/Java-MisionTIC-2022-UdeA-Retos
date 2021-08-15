@@ -5,35 +5,81 @@ public class Taxi extends Vehiculo {
     private double distanciaRecorrida;
     private boolean segurosActivados;
 
+    private int banderazo;
+    private int valorPorKilometroRecorrido;
+
     // Constructor
     public Taxi( String nombre ) {
         this .nombreConductor = nombre;
+
+        this .segurosActivados = false;
+        this .banderazo = 3000;
+        this .valorPorKilometroRecorrido = 2300;
+        this .nMaximoPasajeros = 1;
     }
 
     // Method
     public void gestionarMarcha() {
-        if( this .motorEncendido && ! this .puertaAbierta ) {
+        if( this .motorEncendido && this .enMarcha && this .segurosActivados ) {
             this .enMarcha = ! this .enMarcha;
         }
     }
 
-    public void reiniciarTaximetro() {}
+    public void reiniciarTaximetro() {
+        this .distanciaRecorrida = 0;
+    }
 
-    public void presionarBotonPanico() {}
+    public void presionarBotonPanico(){
+        this .enMarcha = false;
+        this.segurosActivados = false;
+
+        this .setnPasajeros( 0 );
+        this .cantidadDinero -= 0;
+    }
+
+    // ! Verifica que el Taxi no este en marcha, la puerta este abierta, no tenga los seguros y que haya cupo (es decir que este vacio)
+    private boolean canAbrirPuerta() {
+
+        return ! this .enMarcha && ! this .segurosActivados && this .havePuestos();
+    }
 
     @Override
-    public void dejarPasajero() {}
+    public void dejarPasajero() {
+        // Verifica que el Taxi no este en marcha, la puerta este abierta y que no tenga los seguros
+        if( this .canAbrirPuerta() ) {
+            this .setnPasajeros( 0 );
+            this .reiniciarTaximetro();
+            this .cantidadDinero -= this .calcularPasaje();
+        }
 
-    public void recogerPasajero() {}
+    }
 
-    public void gestionarSeguro() {}
+    public void recogerPasajero() {
+        // Verifica que el Taxi no este en marcha, la puerta este abierta, no tenga los seguros y que haya cupo (es decir que este vacio)
+        if( this .canAbrirPuerta() ) {
+            this .setnPasajeros( 1 );
+            this .reiniciarTaximetro();
+        }
 
-    public void calcularPasaje() {}
+    }
+
+    public void gestionarSeguros() {
+
+        this .segurosActivados = ( ! this .enMarcha && this .segurosActivados )
+            ?   false       // Si el taxi está detenido y con los seguros activados, estos se desactivan
+            :   true;       // Para cualquier otro caso se activan.
+
+    }
+
+    public double calcularPasaje() {
+        return this .banderazo + this .valorPorKilometroRecorrido * this .distanciaRecorrida;
+    }
 
     @Override
     public void moverDerecha( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionX += d;
+            this .distanciaRecorrida += d;
         }
     }
 
@@ -41,6 +87,7 @@ public class Taxi extends Vehiculo {
     public void moverIzquierda( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionX -= d;
+            this .distanciaRecorrida += d;
         }
     }
 
@@ -48,6 +95,7 @@ public class Taxi extends Vehiculo {
     public void moverArriba( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionY += d;
+            this .distanciaRecorrida += d;
         }
     }
 
@@ -55,6 +103,7 @@ public class Taxi extends Vehiculo {
     public void moverAbajo( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionY -= d;
+            this .distanciaRecorrida += d;
         }
     }
 
