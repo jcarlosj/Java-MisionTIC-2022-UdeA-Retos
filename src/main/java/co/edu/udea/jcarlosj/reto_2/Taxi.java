@@ -18,6 +18,23 @@ public class Taxi extends Vehiculo {
         this .nMaximoPasajeros = 1;
     }
 
+    // Getters and setters
+    public double getDistanciaRecorrida() {
+        return this .distanciaRecorrida;
+    }
+
+    public void setDistanciaRecorrida( double distanciaRecorrida ) {
+        this .distanciaRecorrida = distanciaRecorrida;
+    }
+
+    public boolean isSegurosActivados() {
+        return this .segurosActivados;
+    }
+
+    public void setSegurosActivados( boolean segurosActivados ) {
+        this .segurosActivados = segurosActivados;
+    }
+
     // Method
     public void gestionarMarcha() {
         if( this .motorEncendido && this .enMarcha && this .segurosActivados ) {
