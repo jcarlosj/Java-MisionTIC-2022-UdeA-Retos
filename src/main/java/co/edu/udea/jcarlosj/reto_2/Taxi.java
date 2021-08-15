@@ -96,7 +96,7 @@ public class Taxi extends Vehiculo {
     public void moverDerecha( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionX += d;
-            this .distanciaRecorrida += d;
+            this .registrarDistancia( d );
         }
     }
 
@@ -104,7 +104,7 @@ public class Taxi extends Vehiculo {
     public void moverIzquierda( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionX -= d;
-            this .distanciaRecorrida += d;
+            this .registrarDistancia( d );
         }
     }
 
@@ -112,7 +112,7 @@ public class Taxi extends Vehiculo {
     public void moverArriba( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionY += d;
-            this .distanciaRecorrida += d;
+            this .registrarDistancia( d );
         }
     }
 
@@ -120,6 +120,13 @@ public class Taxi extends Vehiculo {
     public void moverAbajo( double d ) {
         if( this .motorEncendido && this .enMarcha ) {
             this .localizacionY -= d;
+            this .registrarDistancia( d );
+        }
+    }
+
+    private void registrarDistancia( double d ) {
+        // Verifica que haya pasajeros para registrar distancia
+        if( this .havePasajeros() ) {
             this .distanciaRecorrida += d;
         }
     }

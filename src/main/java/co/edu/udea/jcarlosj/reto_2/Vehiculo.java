@@ -110,6 +110,10 @@ public abstract class Vehiculo {
     public abstract void gestionarMarcha();
 
     // Methods
+    protected boolean havePasajeros() {
+        return this .nPasajeros > 0;
+    }
+
     protected boolean havePuestos() {
         return this .nPasajeros <= this .nMaximoPasajeros;   // Verifica si el numero de pasajeros es menor al numero maximo de pasajeros
     }
