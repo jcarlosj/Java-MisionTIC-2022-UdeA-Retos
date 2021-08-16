@@ -37,9 +37,12 @@ public class Taxi extends Vehiculo {
 
     // Method
     public void gestionarMarcha() {
-        if( this .motorEncendido && this .enMarcha && this .segurosActivados ) {
-            this .enMarcha = ! this .enMarcha;
-        }
+        // Si el taxi está detenido y con los seguros activados,
+        this .enMarcha = ( /*this .motorEncendido &&*/ ! this .enMarcha && this .segurosActivados )
+            ?   true            //  activa la marcha.
+            :   false;          //  Para cualquier otro caso se detiene el taxi
+
+        // Nota: Si hay pasajeros dentro del taxi, es necesario que los seguros de las puertas estén activados para que el taxi pueda estar en marcha.
     }
 
     public void reiniciarTaximetro() {
@@ -47,86 +50,90 @@ public class Taxi extends Vehiculo {
     }
 
     public void presionarBotonPanico(){
-        this .enMarcha = false;
-        this.segurosActivados = false;
+        this .enMarcha = false;             //  Detiene la marcha si se presiona el botón de pánico.
+        this .segurosActivados = false;
 
-        this .setnPasajeros( 0 );
-        this .cantidadDinero -= 0;
+        this .nPasajeros = 0;
+        this .cantidadDinero = 0;
+        this .distanciaRecorrida = 0;
     }
 
     // ! Verifica que el Taxi no este en marcha, la puerta este abierta, no tenga los seguros y que haya cupo (es decir que este vacio)
     private boolean canAbrirPuerta() {
-
-        return ! this .enMarcha && ! this .segurosActivados && this .havePuestos();
+        // Verifica que no este en marcha y los seguros no esten puestos
+        return ! this .enMarcha && ! this .segurosActivados;
     }
 
     @Override
     public void dejarPasajero() {
-        // Verifica que el Taxi no este en marcha, la puerta este abierta y que no tenga los seguros
-        if( this .canAbrirPuerta() ) {
-            this .setnPasajeros( 0 );
+
+        if( this .havePasajeros() && this .canAbrirPuerta() ) {
+            this .nPasajeros = 0;
+            this .cantidadDinero += this .calcularPasaje();
             this .reiniciarTaximetro();
-            this .cantidadDinero -= this .calcularPasaje();
         }
 
     }
 
+    // public void dejarPasajero(){
+    //     if(super.getnPasajeros() > 0 && super.isEnMarcha() == false && segurosActivados == false){
+    //         super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje());
+    //         super.setnPasajeros(super.getnPasajeros() - 1);
+    //         reiniciarTaximetro();
+            
+    //     }
+    // }
+
     public void recogerPasajero() {
         // Verifica que el Taxi no este en marcha, la puerta este abierta, no tenga los seguros y que haya cupo (es decir que este vacio)
-        if( this .canAbrirPuerta() ) {
-            this .setnPasajeros( 1 );
+        if( this .havePuestos() && this .canAbrirPuerta() ) {
+            this .nPasajeros = 1;
             this .reiniciarTaximetro();
+            //this .segurosActivados = true;  // Ver Nota linea 45
         }
 
     }
 
     public void gestionarSeguros() {
-
+        // Si el taxi está detenido y con los seguros activados
         this .segurosActivados = ( ! this .enMarcha && this .segurosActivados )
-            ?   false       // Si el taxi está detenido y con los seguros activados, estos se desactivan
+            ?   false       // estos se desactivan
             :   true;       // Para cualquier otro caso se activan.
 
     }
 
     public double calcularPasaje() {
+        //System .out .println( "banderazo: " + this .banderazo + ", vK: " + this .valorPorKilometroRecorrido + ", dRecorrida: " + this .distanciaRecorrida );
         return this .banderazo + this .valorPorKilometroRecorrido * this .distanciaRecorrida;
     }
 
     @Override
     public void moverDerecha( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
-            this .localizacionX += d;
-            this .registrarDistancia( d );
-        }
+        super .moverDerecha( d );
+        this .registrarDistancia( d );
     }
 
     @Override
     public void moverIzquierda( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
-            this .localizacionX -= d;
-            this .registrarDistancia( d );
-        }
+        super .moverIzquierda( d );
+        this .registrarDistancia( d );
     }
 
     @Override
     public void moverArriba( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
-            this .localizacionY += d;
-            this .registrarDistancia( d );
-        }
+        super .moverArriba( d );
+        this .registrarDistancia( d );
     }
 
     @Override
     public void moverAbajo( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
-            this .localizacionY -= d;
-            this .registrarDistancia( d );
-        }
+        super .moverAbajo( d );
+        this .registrarDistancia( d );
     }
 
     private void registrarDistancia( double d ) {
         // Verifica que haya pasajeros para registrar distancia
-        if( this .havePasajeros() ) {
+        if( this .havePasajeros() && this .enMarcha ) {
             this .distanciaRecorrida += d;
         }
     }

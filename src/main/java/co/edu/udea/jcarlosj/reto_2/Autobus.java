@@ -23,7 +23,9 @@ public class Autobus extends Vehiculo {
 
     // Methods
     public void recogerPasajero( int estrato ) {
-        if( ! this .enMarcha && this .puertaAbierta && this .havePuestos() ) {
+        /* Para poder que una persona se suba, la puerta debe estar abierta, 
+           y enconsecuencia el autobús no puede estar en marcha */
+        if( this .puertaAbierta && ! this .enMarcha && this .havePuestos() ) {
 
             this .cantidadDinero += Autobus .calcularPasaje( estrato );
             this .nPasajeros ++;
@@ -32,9 +34,20 @@ public class Autobus extends Vehiculo {
     }
 
     public void gestionarMarcha() {
-        if( this .motorEncendido && ! this .puertaAbierta ) {
-            this .enMarcha = ! this .enMarcha;
-        }
+        // Si el autobús está detenido y con la puertacerrada.
+        this .enMarcha = ( /*this .motorEncendido &&*/ ! this .enMarcha && ! this .puertaAbierta )
+            ?   true        //  activa la marcha
+            :   false;      //  Para cualquier otro caso se detiene el autobús.
+
+    }
+
+    public void gestionarPuerta() {
+        //  Si la puerta está cerrada y el autobús NO está en marcha
+        this .puertaAbierta = ( ! this .puertaAbierta && ! this .enMarcha )
+            ?   true                //  la abre
+            :   false;              //  Para cualquier otro caso se cierra la puerta.
+
+        // Nota: (El funcionamiento de la puerta no se ve afectado por el estado del motor)
     }
 
     @Override

@@ -115,23 +115,20 @@ public abstract class Vehiculo {
     }
 
     protected boolean havePuestos() {
-        return this .nPasajeros <= this .nMaximoPasajeros;   // Verifica si el numero de pasajeros es menor al numero maximo de pasajeros
+        // nPasajeros no puede exceder la cantidad de nMaximoPasajeros
+        return this .nPasajeros < this .nMaximoPasajeros;   // Verifica si el numero de pasajeros es menor al numero maximo de pasajeros
     }
 
     public void dejarPasajero() {
+        /* Para poder que una persona se baje, la puerta debe estar abierta,
+        y en consecuencia el autobús no puede estar en marcha. */
         if( ! this .enMarcha && this .puertaAbierta ) {
-            this .nPasajeros --;
+            this .nPasajeros --;        // Resta 1 a nPasajeros
         }
     }
 
     public double calcularDistanciaAcopio() {
         return Math .sqrt( Math .pow( this .localizacionX, 2 ) + Math .pow( this .localizacionY, 2 ) );
-    }
-
-    public void gestionarPuerta() {
-        if( ! this .enMarcha ) {
-            this .puertaAbierta = ! this .puertaAbierta;
-        }
     }
 
     public void gestionarAireAcondicionado() {
@@ -141,12 +138,19 @@ public abstract class Vehiculo {
     }
 
     public void gestionarMotor() {
-        this .motorEncendido = ! this .motorEncendido;
-
-        if( ! this .motorEncendido ) {
-            this .wifiEncendido = false;
-            this .aireAcondicionadoActivado = false;
+        // Si el motor está apagado
+        if( ! this.motorEncendido ) {
+            this .motorEncendido = true;    //  lo enciende.
         }
+        else {
+            this.motorEncendido = false;    //   Para cualquier otro caso lo apaga
+
+            // (Y además se debe apagar el aire acondicionado, el Wifi, y detener la marcha).
+            this.aireAcondicionadoActivado = false;
+            this.wifiEncendido = false;
+            this.enMarcha = false;
+        }
+
     }
 
     public void gestionarWifi() {
@@ -156,25 +160,25 @@ public abstract class Vehiculo {
     }
 
     public void moverDerecha( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
+        if( /*this .motorEncendido &&*/ this .enMarcha ) {
             this .localizacionX += d;
         }
     }
 
     public void moverIzquierda( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
+        if( /*this .motorEncendido &&*/ this .enMarcha ) {
             this .localizacionX -= d;
         }
     }
 
     public void moverArriba( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
+        if( /*this .motorEncendido &&*/ this .enMarcha ) {
             this .localizacionY += d;
         }
     }
 
     public void moverAbajo( double d ) {
-        if( this .motorEncendido && this .enMarcha ) {
+        if( /*this .motorEncendido &&*/ this .enMarcha ) {
             this .localizacionY -= d;
         }
     }
@@ -194,7 +198,5 @@ public abstract class Vehiculo {
             ", \n   wifiEncendido: " + this .wifiEncendido +
             ", \n   enMarcha: " + this .enMarcha;
     }
-
-    
 
 }
