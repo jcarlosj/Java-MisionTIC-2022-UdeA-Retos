@@ -66,10 +66,15 @@ public class Personaje {
     }
 
     public void setVida( double vida ) {
+
         // Verifica que el valor ingresado sea del rango que maximo y minimo que puede tener un personaje
-        this .vida = ( vida > -1 && vida < 101 )
-            ?   vida
-            :   100;
+        if ( vida < 0 )
+            this .vida = 0;
+        else if ( vida > -1 && vida < 101 )
+            this .vida = vida;
+        else
+            this .vida = 100;
+
     }
 
     // Metodos
@@ -81,11 +86,7 @@ public class Personaje {
     }
 
     public void recibirImpacto( double d ) {
-        // Verifica que haya puntos de vida disponibles para restar vida
-        if ( this .havePuntosVida( d ) )
-            this .setVida( this .getVida() - d );
-        else
-            this .setVida( 0 );
+        this .setVida( this .getVida() - d );
     }
 
     public double calcularDistanciaRespectoPersonaje( Personaje p ) {
@@ -95,16 +96,6 @@ public class Personaje {
                 Math .pow( this .posicionY - p .posicionY, 2 )
             )
         );
-    }
-
-    // Verifica si hay puntos de vida para restar
-    protected boolean havePuntosVida( double d ) {
-        return d <= this .getVida();
-    }
-
-    // Suma puntos de vida
-    protected void agregarPuntosVida( int d ) {
-        this .setVida( this .getVida() + d );
     }
 
     @Override
