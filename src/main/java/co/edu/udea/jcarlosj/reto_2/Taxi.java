@@ -75,15 +75,6 @@ public class Taxi extends Vehiculo {
 
     }
 
-    // public void dejarPasajero(){
-    //     if(super.getnPasajeros() > 0 && super.isEnMarcha() == false && segurosActivados == false){
-    //         super.setCantidadDinero(super.getCantidadDinero() + this.calcularPasaje());
-    //         super.setnPasajeros(super.getnPasajeros() - 1);
-    //         reiniciarTaximetro();
-            
-    //     }
-    // }
-
     public void recogerPasajero() {
         // Verifica que el Taxi no este en marcha, la puerta este abierta, no tenga los seguros y que haya cupo (es decir que este vacio)
         if( this .havePuestos() && this .canAbrirPuerta() ) {
