@@ -17,5 +17,7 @@ public class StartVariante3 {
 
         lasAcacias .eliminarInmueble( "3" );
         System .out .println( lasAcacias );
+
+        System .out .println( "arriendos mensuales todas las casas: " + lasAcacias .calcularArriendoMensualCondominio() );
     }
 }

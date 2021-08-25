@@ -46,7 +46,15 @@ public class Condominio {
 
     }
 
-    public double calcularArriendoMensualCondominio() {}
+    public double calcularArriendoMensualCondominio() {
+        double arriendosMensuales = 0.0;
+
+        for( Inmueble casa : this .inmuebles ) {
+            arriendosMensuales += casa .getCostoMensual();
+        }
+
+        return arriendosMensuales;
+    }
 
     public double promedioCostoInmueble() {}
 
