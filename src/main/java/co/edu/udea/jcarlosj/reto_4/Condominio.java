@@ -11,8 +11,23 @@ public class Condominio {
     }
 
     // Metodos
+    private boolean buscar( String nCasa ) {
+        boolean encuentraCasa = false;
+
+        for( Inmueble casa : this.inmuebles ) {
+            if( casa .getnCasa() .equals( nCasa ) ) {
+                encuentraCasa = true;
+            }
+        }
+
+        return encuentraCasa;
+    }
+
     public void agregarInmueble( Inmueble i ) {
-        this .inmuebles .add( i );
+        // Verifica que no exista una casa con el mismo # de casa
+        if( ! this .buscar( i .getnCasa() ) ) {
+            this .inmuebles .add( i );
+        }
     }
 
     public void eliminarInmueble( String ID ) {}
@@ -25,7 +40,7 @@ public class Condominio {
 
     @Override
     public String toString() {
-        return "Condominio [ " + "\n   inmuebles: " + this .inmuebles + "\n]";
+        return "Condominio : { " + "\n  inmuebles: " + this .inmuebles + "\n}";
     }
 
 }

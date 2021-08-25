@@ -51,12 +51,13 @@ public class Inmueble {
 
     @Override
     public String toString() {
-        return "Inmueble [ " +
-            "\n   nCasa: " + this .nCasa +
-            "\n   IDArrendador: " + this .IDArrendador +
-            "\n   costoMensual: " + this .costoMensual +
-            "\n   cantidadMesesArrendado: " + this .cantidadMesesArrendado +
-        "\n]";
+        return
+            "\n    { " +
+            "nCasa: " + this .nCasa +
+            ", IDArrendador: " + this .IDArrendador +
+            ", costoMensual: " + this .costoMensual +
+            ", cantidadMesesArrendado: " + this .cantidadMesesArrendado +
+            " }";
     }
 
 }
