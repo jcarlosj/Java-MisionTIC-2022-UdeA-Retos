@@ -20,5 +20,6 @@ public class StartVariante3 {
 
         System .out .println( "arriendos mensuales todos los inmuebles: " + lasAcacias .calcularArriendoMensualCondominio() );
         System .out .println( "promedio costo mensual de los inmuebles: " + lasAcacias .promedioCostoInmueble() );
+        System .out .println( "desviacion estandar costo mensual de los inmuebles: " + lasAcacias .desviacionEstandarCostoInmueble() );
     }
 }

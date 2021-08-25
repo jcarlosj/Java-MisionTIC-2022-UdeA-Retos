@@ -61,7 +61,15 @@ public class Condominio {
         return this .calcularArriendoMensualCondominio() / this .inmuebles .size();
     }
 
-    public double desviacionEstandarCostoInmueble() {}
+    public double desviacionEstandarCostoInmueble() {
+        double total = 0.0;
+
+        for( Inmueble casa : this .inmuebles ) {
+            total += Math .pow( casa .getCostoMensual() - this .promedioCostoInmueble(), 2 );
+        }
+
+        return Math .sqrt( ( 1 / (double) this .inmuebles .size() ) * total );
+    }
 
     @Override
     public String toString() {
