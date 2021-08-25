@@ -11,26 +11,32 @@ public class Condominio {
     }
 
     // Metodos
-    private boolean buscar( String nCasa ) {
-        boolean encuentraCasa = false;
+    private Inmueble buscar( String nCasa ) {
+        Inmueble casaEncontrada = null;
 
         for( Inmueble casa : this.inmuebles ) {
             if( casa .getnCasa() .equals( nCasa ) ) {
-                encuentraCasa = true;
+                casaEncontrada = casa;
             }
         }
 
-        return encuentraCasa;
+        return casaEncontrada;
     }
 
     public void agregarInmueble( Inmueble i ) {
         // Verifica que no exista una casa con el mismo # de casa
-        if( ! this .buscar( i .getnCasa() ) ) {
+        if( this .buscar( i .getnCasa() ) == null ) {
             this .inmuebles .add( i );
         }
     }
 
-    public void eliminarInmueble( String ID ) {}
+    public void eliminarInmueble( String ID ) {
+
+        // Verifica que existe la casa con el mismo # de casa
+        if( this .buscar( ID ) != null ) {
+            this .inmuebles .remove( this .buscar( ID ) );
+        }
+    }
 
     public double calcularArriendoMensualCondominio() {}
 
