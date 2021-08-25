@@ -11,7 +11,9 @@ public class Condominio {
     }
 
     // Metodos
-    public void agregarInmueble( Inmueble i ) {}
+    public void agregarInmueble( Inmueble i ) {
+        this .inmuebles .add( i );
+    }
 
     public void eliminarInmueble( String ID ) {}
 
