@@ -56,7 +56,10 @@ public class Condominio {
         return arriendosMensuales;
     }
 
-    public double promedioCostoInmueble() {}
+    public double promedioCostoInmueble() {
+
+        return this .calcularArriendoMensualCondominio() / this .inmuebles .size();
+    }
 
     public double desviacionEstandarCostoInmueble() {}
 

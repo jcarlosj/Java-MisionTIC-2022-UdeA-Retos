@@ -15,9 +15,10 @@ public class StartVariante3 {
         lasAcacias .agregarInmueble( casa3 );
         System .out .println( lasAcacias );
 
-        lasAcacias .eliminarInmueble( "3" );
+        //lasAcacias .eliminarInmueble( "3" );
         System .out .println( lasAcacias );
 
-        System .out .println( "arriendos mensuales todas las casas: " + lasAcacias .calcularArriendoMensualCondominio() );
+        System .out .println( "arriendos mensuales todos los inmuebles: " + lasAcacias .calcularArriendoMensualCondominio() );
+        System .out .println( "promedio costo mensual de los inmuebles: " + lasAcacias .promedioCostoInmueble() );
     }
 }
