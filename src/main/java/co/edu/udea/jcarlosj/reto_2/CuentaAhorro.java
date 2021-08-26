@@ -20,19 +20,22 @@ public class CuentaAhorro extends CuentaBanco {
 
     public void pagarInteres( int dias ) {
 
-        double 
+        double
             capitalFinal = 0.0,
             capitalInicial = this .getSaldo();
 
-        if( dias > 1 ) {
+        // A partir del dia 1
+        if( dias > 0 ) {
+            // Itera la cantidad de dias que se va a pagar interes compuesto por dia
             for( int i = 0; i < dias; i++ ) {
-                capitalFinal = capitalInicial * ( 1 + this .getIEA() / 365 );
-                capitalInicial = capitalFinal;
+                capitalFinal = capitalInicial * ( 1 + this .getIEA() / 365 );       // Saldo mas el interes diario
+                capitalInicial = capitalFinal;                                      // IEA es acumulativo (Interes compuesto)
             }
 
-            this .setSaldo( capitalInicial );
+            this .setSaldo( capitalInicial );                                       // Solo despues del calculo acumulativo de los intereses a pagar lo agrego como nuevo saldo
+
         }
-            
+
     }
 
     @Override
