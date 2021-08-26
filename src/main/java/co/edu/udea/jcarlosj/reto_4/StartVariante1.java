@@ -17,7 +17,7 @@ public class StartVariante1 {
         empresa .eliminarTrabajador( "78783433" );
         System .out .println( empresa );
 
-        System .out .println( "total salarios quincenales de todos los trabajadores: " + empresa .calcularSalarioQuincenaNomina() );
+        System .out .println( "total salarios quincenales de todos los trabajadores: " + empresa .calcularSalarioQuincenalNomina() );
         System .out .println( "promedio edad trabajadores en nomina: " + empresa .promedioEdadNomina() );
         System .out .println( "desviacion estandar edad trabajadores en nomina: " + empresa .desviacionEstandarEdadNomina() );
 

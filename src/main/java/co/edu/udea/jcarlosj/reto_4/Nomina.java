@@ -13,6 +13,17 @@ public class Nomina {
         this .trabajadorSeleccionado = null;
     }
 
+
+    // Getters and setters
+    public ArrayList<Trabajador> getTrabajadores() {
+        return this .trabajadores;
+    }
+
+    public void setTrabajadores( ArrayList<Trabajador> trabajadores ) {
+        this .trabajadores = trabajadores;
+    }
+
+
     // Metodos
     private void buscar( String cC ) {
 
@@ -48,7 +59,7 @@ public class Nomina {
 
     }
 
-    public double calcularSalarioQuincenaNomina() {
+    public double calcularSalarioQuincenalNomina() {
         double salariosMensuales = 0.0;
 
         for( Trabajador trabajador : this .trabajadores )
