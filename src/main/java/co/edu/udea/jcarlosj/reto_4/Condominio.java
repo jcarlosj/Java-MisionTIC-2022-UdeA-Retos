@@ -7,10 +7,21 @@ public class Condominio {
     private ArrayList<Inmueble> inmuebles;              // Define nombre ArrayList de tipo Inmueble
     private Inmueble inmuebleSeleccionado;
 
+    // Constructor
     public Condominio() {
         this .inmuebles = new ArrayList<Inmueble>();    // Crea instancia del ArrayList de tipo Inmueble
         this .inmuebleSeleccionado = null;
     }
+
+    // Getters and setters
+    public ArrayList<Inmueble> getInmuebles() {
+        return this .inmuebles;
+    }
+
+    public void setInmuebles( ArrayList<Inmueble> inmuebles ) {
+        this .inmuebles = inmuebles;
+    }
+
 
     // Metodos
     private void buscar( String nCasa ) {
