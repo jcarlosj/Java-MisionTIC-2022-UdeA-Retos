@@ -1,5 +1,8 @@
 package co.edu.udea.jcarlosj.reto_4;
 
+import java.time.LocalDate;
+import java.time.Period;
+
 public class Trabajador {
     // Atributos
     private String nombre;
@@ -49,25 +52,44 @@ public class Trabajador {
         return this .diaNacimiento;
     }
     public void setDiaNacimiento( int diaNacimiento ) {
-        this .diaNacimiento = diaNacimiento;
+        // Verifica que diaNacimiento sea un numero entre 1 y 31
+        if( diaNacimiento > 0 && diaNacimiento < 32 )
+            this .diaNacimiento = diaNacimiento;
+
     }
     public int getMesNacimiento() {
         return this .mesNacimiento;
     }
     public void setMesNacimiento( int mesNacimiento ) {
-        this .mesNacimiento = mesNacimiento;
+        // Verifica que mesNacimiento sea un numero entre 1 y 12
+        if( mesNacimiento > 0 && mesNacimiento < 13 )
+            this .mesNacimiento = mesNacimiento;
+
     }
     public int getYearNacimiento() {
         return this .yearNacimiento;
     }
     public void setYearNacimiento( int yearNacimiento ) {
-        this .yearNacimiento = yearNacimiento;
+        // Verifica que yearNacimiento sea un numero entre 1900 y 3000
+        if( yearNacimiento > 1899 && yearNacimiento < 3001 )
+            this .yearNacimiento = yearNacimiento;
+
     }
 
     // Metodos
-    public int calcularEdad() {}
+    public int calcularEdad() {
+        LocalDate fechaNacimiento = LocalDate .of( this .yearNacimiento, this .mesNacimiento, this .diaNacimiento );
+        LocalDate fechaActual = LocalDate .now();
 
-    public double salarioQuincena() {}
+        Period periodo = Period .between( fechaNacimiento, fechaActual );
+
+        return periodo .getYears();
+    }
+
+    public double salarioQuincena() {
+
+        return this .salarioPorHora * this .horasTrabajadas;
+    }
 
     @Override
     public String toString() {
