@@ -63,7 +63,7 @@ public class Nomina {
         for( Trabajador trabajador : this .trabajadores )
             sumatoriaEdades += trabajador. calcularEdad();
 
-        return sumatoriaEdades / this .trabajadores .size();
+        return (double) sumatoriaEdades / this .trabajadores .size();
     }
 
     public double desviacionEstandarEdadNomina() {

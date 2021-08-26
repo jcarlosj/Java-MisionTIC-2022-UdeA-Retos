@@ -86,7 +86,7 @@ public class Trabajador {
         return periodo .getYears();
     }
 
-    public double salarioQuincena() {
+    public double salarioQuincenal() {
 
         return this .salarioPorHora * this .horasTrabajadas;
     }
@@ -94,15 +94,15 @@ public class Trabajador {
     @Override
     public String toString() {
         return
-            "Trabajador [" +
-            "\n  nombre: " + nombre +
-            "\n  CC: " + CC +
-            "\n  diaNacimiento: " + diaNacimiento +
-            "\n  mesNacimiento: " + mesNacimiento +
-            "\n  yearNacimiento: " + yearNacimiento +
-            "\n  horasTrabajadas: " + horasTrabajadas +
-            "\n  salarioPorHora: " + salarioPorHora +
-            "\n]";
+            "\n    { " +
+            "nombre: " + nombre +
+            ", CC: " + CC +
+            ", diaNacimiento: " + diaNacimiento +
+            ", mesNacimiento: " + mesNacimiento +
+            ", yearNacimiento: " + yearNacimiento +
+            ", horasTrabajadas: " + horasTrabajadas +
+            ", salarioPorHora: " + salarioPorHora +
+            " }";
     }
 
 }
