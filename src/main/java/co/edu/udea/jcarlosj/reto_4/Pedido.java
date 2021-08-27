@@ -49,7 +49,10 @@ public class Pedido {
     }
 
     public void setDiaPedido(int diaPedido) {
-        this .diaPedido = diaPedido;
+        // Verifica que diaPedido sea un numero entre 1 y 31
+        if( diaPedido > 0 && diaPedido < 32 )
+            this .diaPedido = diaPedido;
+
     }
 
     public int getMesPedido() {
@@ -57,7 +60,9 @@ public class Pedido {
     }
 
     public void setMesPedido(int mesPedido) {
-        this .mesPedido = mesPedido;
+        // Verifica que mesPedido sea un numero entre 1 y 12
+        if( mesPedido > 0 && mesPedido < 13 )
+            this .mesPedido = mesPedido;
     }
 
     public int getYearPedido() {
@@ -65,7 +70,9 @@ public class Pedido {
     }
 
     public void setYearPedido(int yearPedido) {
-        this .yearPedido = yearPedido;
+        // Verifica que yearPedido sea un numero entre 1900 y 3000
+        if( yearPedido > 1899 && yearPedido < 3001 )
+            this .yearPedido = yearPedido;
     }
 
     @Override
@@ -73,13 +80,12 @@ public class Pedido {
         return
             "\n    { " +
             "IDCliente: " + this .IDCliente +
+            ", nPedido: " + this .nPedido +
             ", costoPedido: " + this .costoPedido +
             ", diaPedido: " + this .diaPedido +
             ", mesPedido: " + this .mesPedido +
-            ", nPedido: " + this .nPedido +
             ", yearPedido: " + this .yearPedido +
             " }";
     }
 
-    
 }
