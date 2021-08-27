@@ -19,9 +19,11 @@ public class Trabajador {
         this .CC = cC;
         this .salarioPorHora = salarioPorHora;
         this .horasTrabajadas = horasTrabajadas;
-        this .diaNacimiento = diaNacimiento;
-        this .mesNacimiento = mesNacimiento;
-        this .yearNacimiento = yearNacimiento;
+
+        // Usamos los Setters para aplicar las restricciones desde el constructor
+        this .setDiaNacimiento( diaNacimiento );
+        this .setMesNacimiento( mesNacimiento );
+        this .setYearNacimiento( yearNacimiento );
     }
     // Getters and setters
     public String getNombre() {
