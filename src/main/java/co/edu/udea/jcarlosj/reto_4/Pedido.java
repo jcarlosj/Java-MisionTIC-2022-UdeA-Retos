@@ -14,9 +14,10 @@ public class Pedido {
         this .nPedido = nPedido;
         this .IDCliente = iDCliente;
         this .costoPedido = costoPedido;
-        this .diaPedido = diaPedido;
-        this .mesPedido = mesPedido;
-        this .yearPedido = yearPedido;
+        // Usamos los Setters para aplicar las restricciones desde el constructor
+        this .setDiaPedido( diaPedido );
+        this .setMesPedido( mesPedido );
+        this .setYearPedido( yearPedido );
     }
 
     // Getters and setters
