@@ -4,7 +4,7 @@ public class StartVehiculos {
     public static void main( String[] args ) throws Exception {
 
         // Evaluacion del Autobus
-        Autobus autobus = new Autobus( "Pepe", 2 );
+        Autobus autobus = new Autobus( "Filomeno", 2 );
         // println( "1. Hace entrega del autobus", autobus );
 
         // autobus .recogerPasajero( 2 );
@@ -84,38 +84,69 @@ public class StartVehiculos {
 
         // Validacion con data del VPL para Taxi
         
-        println( "1. Taxi: Hace entrega del taxi", taxi );
+        // println( "1. Taxi: Hace entrega del taxi", taxi );
 
-        taxi .gestionarMotor();
-        taxi .recogerPasajero();
-        taxi .gestionarSeguros();
-        taxi .gestionarMarcha();
-        taxi .moverAbajo( 5 );
-        taxi .moverDerecha( 6 );
-        taxi .moverIzquierda( 2 );
-        println( "2. Taxi: Enciende motor, recoge pasajero, pone seguros, pone en marcha y se mueve", taxi );
+        // taxi .gestionarMotor();
+        // taxi .recogerPasajero();
+        // taxi .gestionarSeguros();
+        // taxi .gestionarMarcha();
+        // taxi .moverAbajo( 5 );
+        // taxi .moverDerecha( 6 );
+        // taxi .moverIzquierda( 2 );
+        // println( "2. Taxi: Enciende motor, recoge pasajero, pone seguros, pone en marcha y se mueve", taxi );
 
-        taxi .gestionarSeguros();
-        taxi .gestionarMarcha();
-        println( "3. Taxi: quita seguros, detiene la marcha", taxi );
+        // taxi .gestionarSeguros();
+        // taxi .gestionarMarcha();
+        // println( "3. Taxi: quita seguros, detiene la marcha", taxi );
 
-        taxi .dejarPasajero();
-        taxi .dejarPasajero();
-        println( "4. Taxi: deja al pasajero 2 veces", taxi );
+        // taxi .dejarPasajero();
+        // taxi .dejarPasajero();
+        // println( "4. Taxi: deja al pasajero 2 veces", taxi );
 
-        taxi .gestionarSeguros();
-        taxi .dejarPasajero();
-        println( "5. Taxi: quita seguros, deja el pasajero", taxi );
+        // taxi .gestionarSeguros();
+        // taxi .dejarPasajero();
+        // println( "5. Taxi: quita seguros, deja el pasajero", taxi );
 
-        taxi .recogerPasajero();
-        taxi .gestionarSeguros();
-        taxi .moverArriba( 1 );
-        println( "6. Taxi: recoge pasajero, pone seguros, se mueve", taxi );
+        // taxi .recogerPasajero();
+        // taxi .gestionarSeguros();
+        // taxi .moverArriba( 1 );
+        // println( "6. Taxi: recoge pasajero, pone seguros, se mueve", taxi );
 
-        taxi .gestionarMarcha();
-        taxi .gestionarSeguros();
-        taxi .dejarPasajero();
-        println( "7. Taxi: pone marcha, se mueve", taxi );
+        // taxi .gestionarMarcha();
+        // taxi .gestionarSeguros();
+        // taxi .dejarPasajero();
+        // println( "7. Taxi: pone marcha, se mueve", taxi );
+
+        // Validacion con data del VPL para Autobus
+        println( "1. Autobus: ", autobus );
+
+        autobus .gestionarPuerta();
+        println( "2. Autobus: gestionaPuerta", autobus );
+
+        autobus .recogerPasajero( 1 );
+        autobus .recogerPasajero( 3 );
+        autobus .recogerPasajero( 6 );
+        println( "3. Autobus: recogerPasajero (1, 3, 6)", autobus );
+
+        autobus .gestionarMarcha();
+        autobus .gestionarPuerta();
+        autobus .gestionarMarcha();
+        println( "4. Autobus: gestionarPuerta", autobus );
+
+        autobus .gestionarMotor();
+        autobus .gestionarMarcha();
+        autobus .moverArriba( 1 );
+        autobus .moverIzquierda( 2 );
+        autobus .moverAbajo( 3 );
+        println( "5. Autobus: gestionarMotor, gestionarMarcha, Se mueve", autobus );
+
+        autobus .recogerPasajero( 6 );
+        autobus .gestionarMarcha();
+        autobus .gestionarPuerta();
+        autobus .recogerPasajero( 4 );
+        println( "6. Autobus: ", autobus );
+
+        System .out.println( "Distancia Acopio: " + autobus .calcularDistanciaAcopio() );
 
     }
 

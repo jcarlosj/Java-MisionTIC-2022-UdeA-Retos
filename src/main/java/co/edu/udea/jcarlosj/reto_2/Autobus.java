@@ -35,7 +35,7 @@ public class Autobus extends Vehiculo {
 
     public void gestionarMarcha() {
         // Si el autobús está detenido y con la puertacerrada.
-        this .enMarcha = ( /*this .motorEncendido &&*/ ! this .enMarcha && ! this .puertaAbierta )
+        this .enMarcha = ( this .motorEncendido && ! this .enMarcha && ! this .puertaAbierta )
             ?   true        //  activa la marcha
             :   false;      //  Para cualquier otro caso se detiene el autobús.
 

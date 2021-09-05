@@ -38,7 +38,7 @@ public class Taxi extends Vehiculo {
     // Method
     public void gestionarMarcha() {
         // Si el taxi está detenido y con los seguros activados,
-        this .enMarcha = ( /*this .motorEncendido &&*/ ! this .enMarcha && this .segurosActivados )
+        this .enMarcha = ( this .motorEncendido && ! this .enMarcha && this .segurosActivados )
             ?   true            //  activa la marcha.
             :   false;          //  Para cualquier otro caso se detiene el taxi
 
